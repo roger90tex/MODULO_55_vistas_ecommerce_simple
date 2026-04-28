@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vistas del e-commerce</title>
+</head>
+<body>
+    <h1>Vistas del e-commerce</h1>
+    <h2>Lista de productos</h2>
+
+    <a href="/ventas/carrito/">Ver carrito</a> |
+    <a href="/ventas/pedido/">Procesar pedido</a>
+    <hr>
+    {% for producto in productos %}
+        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion }}</p>
+            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+
+            <form action="#" method="post">
+                {% csrf_token %}
+                <button type="submit">Agregar al carrito</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>
