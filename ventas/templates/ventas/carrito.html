@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vistas del e-commerce</title>
+</head>
+<body>
+<h1>Carrito</h1>
+
+<nav>
+    <a href="/ventas/">Productos</a> |
+    <a href="/ventas/pedido/">Procesar pedido</a> |
+    <a href="/ventas/grafica/">Gráfica</a>
+</nav>
+
+<hr>
+
+{% if carrito %}
+    <h2>Productos en el carrito</h2>
+
+    {% for producto in carrito %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion }}</p>
+            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Total: ${{ total }}</h2>
+
+    <a href="/ventas/pedido/">
+        <button>Procesar pedido</button>
+    </a>
+{% else %}
+    <p>🛒 Carrito vacío por ahora</p>
+{% endif %}
+</body>
+</html>

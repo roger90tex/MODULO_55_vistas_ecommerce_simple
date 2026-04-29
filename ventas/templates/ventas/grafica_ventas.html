@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfica de Ventas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>Gráfica de Ventas</h1>
+    <nav style="margin-bottom: 20px;">
+    <a href="/ventas/">Ver productos</a> |
+    <a href="/ventas/carrito/">Ver carrito</a> |
+    <a href="/admin/">Admin</a>
+    </nav>
+
+    <canvas id="graficaVentas" width="400" height="200"></canvas>
+
+   <script>
+         fetch('/ventas/grafica/datos/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('graficaVentas');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Ventas en MXN',
+                        data: data.datos,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+</script>
+
+</body>
+</html>

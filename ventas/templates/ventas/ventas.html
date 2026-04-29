@@ -6,10 +6,17 @@
 </head>
 <body>
     <h1>Vistas del e-commerce</h1>
+    <nav style="margin-bottom:20px;">
+        <a href="/ventas/">Productos</a> |
+        <a href="/ventas/carrito/">Carrito</a> |
+        <a href="/ventas/pedido/">Procesar pedido</a> |
+        <a href="/ventas/grafica/">Gráfica ventas</a> |
+        <a href="/admin/">Admin</a>
+    </nav>
     <h2>Lista de productos</h2>
 
-    <a href="/ventas/carrito/">Ver carrito</a> |
-    <a href="/ventas/pedido/">Procesar pedido</a>
+        <a href="/ventas/carrito/">Ver carrito</a> |
+        <a href="/ventas/pedido/">Procesar pedido</a>
     <hr>
     {% for producto in productos %}
         <div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
@@ -17,10 +24,9 @@
             <p>{{ producto.descripcion }}</p>
             <p><strong>Precio:</strong> ${{ producto.precio }}</p>
 
-            <form action="#" method="post">
-                {% csrf_token %}
-                <button type="submit">Agregar al carrito</button>
-            </form>
+            <a href="/ventas/agregar/{{ producto.id }}/">
+                <button type="button">Agregar al carrito</button>
+            </a>
         </div>
     {% endfor %}
 </body>
