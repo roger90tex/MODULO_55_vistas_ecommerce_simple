@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from order_manager.models import Order
 from cart.models import Cart
+from .forms import RegistroUsuarioForm
 
 
 PRODUCTOS = [
@@ -75,3 +76,15 @@ def datos_ventas(request):
         "labels": labels,
         "datos": datos
     })
+
+def registro_usuario(request):
+    if request.method == "POST":
+        form = RegistroUsuarioForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/admin/")
+    else:
+        form = RegistroUsuarioForm()
+
+    return render(request, "ventas/registro.html", {"form": form})

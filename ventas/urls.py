@@ -6,6 +6,7 @@ from .views import (
     ventas_view,
     datos_ventas,
     agregar_carrito,
+    registro_usuario,
 )
 
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
 
     path('grafica/', ventas_view, name='ventas_grafica'),
     path('grafica/datos/', datos_ventas, name='datos_ventas'),
+
+    path('registro/', registro_usuario, name='registro_usuario'),
 ]
