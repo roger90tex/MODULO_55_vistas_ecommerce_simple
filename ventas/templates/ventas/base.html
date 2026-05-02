@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}E-commerce{% endblock %}</title>
+</head>
+<body>
+
+<h1>Mi E-commerce 🚀</h1>
+
+<nav style="margin-bottom:20px;">
+    <a href="/ventas/">Productos</a> |
+    <a href="/ventas/carrito/">Carrito</a> |
+    <a href="/ventas/pedido/">Procesar pedido</a> |
+    <a href="/ventas/grafica/">Gráfica ventas</a> |
+    <a href="/admin/">Admin</a> |
+    <a href="/ventas/registro/">Registro</a>
+</nav>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

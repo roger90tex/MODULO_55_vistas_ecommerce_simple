@@ -1,0 +1,16 @@
+<div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
+
+    <h3>{{ producto.nombre|upper }}</h3>
+    <p>{{ producto.descripcion|lower }}</p>
+
+    <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+
+    {% if indice|divisibleby:2 %}
+        <p style="color: green;">🔥 Producto en promoción</p>
+    {% endif %}
+
+    <a href="/ventas/agregar/{{ producto.id }}/">
+        <button>Agregar al carrito</button>
+    </a>
+
+</div>

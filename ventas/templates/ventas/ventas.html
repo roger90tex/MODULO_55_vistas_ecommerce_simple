@@ -1,34 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Vistas del e-commerce</title>
-</head>
-<body>
-    <h1>Vistas del e-commerce</h1>
-    <nav style="margin-bottom:20px;">
-        <a href="/ventas/">Productos</a> |
-        <a href="/ventas/carrito/">Carrito</a> |
-        <a href="/ventas/pedido/">Procesar pedido</a> |
-        <a href="/ventas/grafica/">Gráfica ventas</a> |
-        <a href="/admin/">Admin</a>
-        <a href="/ventas/registro/">Registro</a> |
-    </nav>
-    <h2>Lista de productos</h2>
+{% extends 'ventas/base.html' %}
 
-        <a href="/ventas/carrito/">Ver carrito</a> |
-        <a href="/ventas/pedido/">Procesar pedido</a>
-    <hr>
-    {% for producto in productos %}
-        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
-            <h3>{{ producto.nombre }}</h3>
-            <p>{{ producto.descripcion }}</p>
-            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+{% block title %}
+Lista de productos
+{% endblock %}
 
-            <a href="/ventas/agregar/{{ producto.id }}/">
-                <button type="button">Agregar al carrito</button>
-            </a>
-        </div>
-    {% endfor %}
-</body>
-</html>
+{% block content %}
+
+<h2>Lista de productos</h2>
+
+<a href="/ventas/carrito/">Ver carrito</a>
+<a href="/ventas/pedido/">Procesar pedido</a>
+
+<hr>
+
+{% for producto in productos %}
+    {% include 'ventas/producto_card.html' with producto=producto indice=forloop.counter %}
+{% endfor %}
+
+{% endblock %}
