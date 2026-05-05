@@ -3,6 +3,10 @@ from django.http import JsonResponse
 from order_manager.models import Order
 from cart.models import Cart
 from .forms import RegistroUsuarioForm
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .serializers import UserProfileSerializer
 
 
 PRODUCTOS = [
@@ -88,3 +92,10 @@ def registro_usuario(request):
         form = RegistroUsuarioForm()
 
     return render(request, "ventas/registro.html", {"form": form})
+
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserProfileSerializer(request.user)
+        return Response(serializer.data)
